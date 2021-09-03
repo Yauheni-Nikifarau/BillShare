@@ -1,38 +1,192 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header {
+    position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu-button {
+    position: absolute;
+    width: 25px;
+    height: 18px;
+    display: flex;
+    flex-flow: column;
+    top: 15px;
+    left: 30px;
+    justify-content: space-between;
+    transition: 1s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.menu-button span {
+    display: block;
+    width: 25px;
+    height: 4px;
+    border-radius: 1px;
+    background-color: #5A5A5A;
 }
 
-.App-link {
-  color: #61dafb;
+.app-name {
+    color: #5A5A5A;
+    font-size: 72px;
+    padding: 25px;
+    text-align: right;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu-area {
+    position: absolute;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #5A5A5A;
+    transition: 1s;
 }
+
+.menu-area.open {
+    left: 0;
+}
+
+.menu-button span {
+    transition: 0.3s;
+}
+
+.menu-button.open {
+    left: 430px;
+}
+
+.menu-button.open span:nth-child(1) {
+    transform: rotate(45deg) translate(0, 10px);
+}
+
+.menu-button.open span:nth-child(2) {
+    display: none;
+}
+
+.menu-button.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(0, -10px);
+}
+
+.app-content {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    transition: 1s;
+}
+
+.app-content > div > div {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 30px 30px;
+}
+
+.app-content > div > button {
+    padding: 10px 60px;
+    background-color: #31A96F;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 48px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+.participants { grid-area: 1 / 1 / 2 / 2; }
+.spending { grid-area: 1 / 2 / 2 / 3; }
+.items { grid-area: 2 / 1 / 3 / 3; }
+.results { grid-area: 3 / 1 / 4 / 3; }
+.menu_open .participants { grid-area: 1 / 1 / 2 / 3; }
+.menu_open .spending { grid-area: 2 / 1 / 3 / 3; }
+.menu_open .items { grid-area: 3 / 1 / 4 / 3; }
+.menu_open .results { grid-area: 4 / 1 / 5 / 3; }
+
+.app-content.menu_open {
+    margin: 0 auto 0 600px;
+}
+
+.box {
+    border: 5px solid #31A96F;
+    border-radius: 30px;
+}
+
+.box > p:last-child {
+    font-size: 24px;
+    color: #5a5a5a;
+    font-weight: 700;
+    text-align: right;
+    padding: 10px 30px;
+}
+
+.box-header {
+    padding: 10px 40px;
+    background-color: #31A96F;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.box-header h2 {
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+.box-header button {
+    padding: 5px 10px;
+    color: #31A96F;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.box_item-box {
+    width: calc(100% - 80px);
+    margin: 10px auto;
+    padding: 5px 30px;
+    border: 1px solid #5a5a5a;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.box_item-box p {
+    margin-right: auto;
+    transition: 0.5s;
+}
+
+.item-box_button {
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.item-box_button_approve {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #31A96F;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: 0.5s;
+}
+
+.box_item-box_approved .item-box_button_approve {
+    background-color: #31A96F;
+}
+
+.box_item-box.box_item-box_approved {
+    border: 1px solid #939292;
+}
+
+.box_item-box_approved p {
+    color: #5a5a5a;
+    text-decoration: line-through;
+}
+
+
