@@ -9,6 +9,7 @@ const Results = () => {
     const approve = (event: any) => {
         event.target.parentNode.classList.toggle('box_item-box_approved')
     }
+
     return(
         <Box title={'Results'} buttonShouldBe={false}>
             <div className='box_item-box'>

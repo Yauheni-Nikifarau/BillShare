@@ -8,19 +8,16 @@ const Spending = () => {
     const fields = [{type: 'select', name: 'participant', options: context.library.data.participants.map((participant) => { return {value: participant.id, text: participant.name}})},{type: 'number', name: 'sum', placeholder: 'Enter Sum'}];
 
     const addSpending = async (properties: any) => {
-        let maxId = context.library.data.spending.length ? context.library.data.spending.reduce((prev: any, current: any) => current.id > prev.id ? current : prev).id : 0;
-        let tempLibrary = context.library;
-        let newSpending = {id: maxId + 1, participantId: +properties.participant, amount: properties.sum};
-        tempLibrary.data.spending.push(newSpending);
-        await context.updateLibrary(tempLibrary);
-        // localStorage.setItem('library', JSON.stringify(context.library))
+        const maxId = context.library.data.spending.length ? context.library.data.spending.reduce((prev: any, current: any) => current.id > prev.id ? current : prev).id : 0;
+        const tempLibrary = context.library;
+        tempLibrary.data.spending.push({id: maxId + 1, participantId: +properties.participant, amount: +properties.sum });
+        await context.updateLibrary({ ...tempLibrary });
     }
 
     const removeSpending = async (index: number) => {
         let tempLibrary = context.library;
         tempLibrary.data.spending = context.library.data.spending.filter((spending: any) => spending.id !== index);
-        await context.updateLibrary(tempLibrary);
-        // localStorage.setItem('library', JSON.stringify(context.library))
+        await context.updateLibrary({ ...tempLibrary });
     }
 
     const items = context.library.data.spending.map((spending) => {
@@ -32,11 +29,19 @@ const Spending = () => {
             amount: spending.amount
         }
     })
+
+    // let total = 0;
+    // for (let spending of context.library.data.spending) {
+    //     total += spending.amount;
+    // }
+
     const total = context.library.data.spending.length ? context.library.data.spending.reduce((prev, cur) => {
-        let result = cur;
-        result.amount = +cur.amount + +prev.amount;
-        return result;
+        // let result = { ...cur };
+        // result.amount = +cur.amount + +prev.amount;
+        // return result;
+        return { ...cur, amount: +cur.amount + +prev.amount }
     }).amount : 0;
+
     return(
         <Box title={'Spending'} buttonShouldBe={true} fields={fields} okClickHandler={addSpending}>
             {items.map((spending) => (
