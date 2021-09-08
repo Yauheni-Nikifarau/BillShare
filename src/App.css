@@ -189,4 +189,66 @@
     text-decoration: line-through;
 }
 
+.shadow-bg {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(90, 90, 90, 0.2);
+    z-index: 4;
+}
+
+.box_add-modal {
+    position: absolute;
+    display: none;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    flex-flow: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 3px solid #31A96F;
+    border-radius: 30px;
+    z-index: 5;
+}
+
+.box_add-modal.open {
+    display: flex;
+}
+
+.shadow-bg.open {
+    display: block;
+}
+
+.box_add-modal input {
+    margin: 15px 0;
+    padding: 10px;
+    width: 200px;
+}
+
+.box_add-modal button {
+    margin-top: 20px;
+    width: 50px;
+    text-transform: uppercase;
+    background-color: #31A96F;
+    color: #FFFFFF;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.box_add-modal select {
+    background-color: #FFFFFF;
+    width: 200px;
+    border: 1px solid #5a5a5a;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+
 
