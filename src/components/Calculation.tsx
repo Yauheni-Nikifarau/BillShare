@@ -17,6 +17,13 @@ const Calculation = () => {
     }
 
     const calculate = async () => {
+        for (let item of library.data.items) {
+            if (!item.participantsId.length) {
+                alert(`You don't have participants sharing "${item.name}" item`);
+                return;
+            }
+        }
+
         const spendingAmount = library.data.spending.length ? library.data.spending.reduce((prev: any, cur: any) => {
             return {...cur, amount: +cur.amount + +prev.amount}
         }).amount : 0;
@@ -27,7 +34,10 @@ const Calculation = () => {
 
         console.log(spendingAmount);
         console.log(itemsAmount);
-        if (spendingAmount !== itemsAmount) {console.log('non equal'); return;}
+        if (spendingAmount !== itemsAmount) {
+            alert('Spending and Items sums are not equal. Check it out.');
+            return;
+        }
 
         let debtors: Array<any> = [];
         let creditors: Array<any> = [];
