@@ -10,7 +10,7 @@ const Spending = () => {
     const addSpending = async (properties: any) => {
         const maxId = context.library.data.spending.length ? context.library.data.spending.reduce((prev: any, current: any) => current.id > prev.id ? current : prev).id : 0;
         const tempLibrary = context.library;
-        tempLibrary.data.spending.push({id: maxId + 1, participantId: +properties.participant, amount: +properties.sum });
+        tempLibrary.data.spending.push({id: maxId + 1, participantId: +properties.participant, amount: +(+properties.sum).toFixed(2) });
         await context.updateLibrary({ ...tempLibrary });
     }
 

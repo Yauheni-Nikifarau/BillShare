@@ -13,7 +13,7 @@ const Items = () => {
         const maxId = context.library.data.items.length ? context.library.data.items.reduce((prev: any, current: any) => current.id > prev.id ? current : prev).id : 0;
         const tempLibrary = context.library;
         const initialParticipantsID = context.library.data.participants.map((participant) => participant.id);
-        tempLibrary.data.items.push({id: maxId + 1, name: properties.title, sum: +properties.sum, participantsId: initialParticipantsID });
+        tempLibrary.data.items.push({id: maxId + 1, name: properties.title, sum: +(+properties.sum).toFixed(2), participantsId: initialParticipantsID });
         await context.updateLibrary({ ...tempLibrary });
     }
 
@@ -42,12 +42,14 @@ const Items = () => {
     for (let participant of context.library.data.participants) {
         participants[participant.id] = participant.name;
     }
-    console.log(participants)
+
+    const total = context.library.data.items.length ? context.library.data.items.reduce((prev, cur) => {
+        return { ...cur, sum: +cur.sum + +prev.sum }
+    }).sum : 0;
 
     return(
         <Box title={'Items'} buttonShouldBe={true} fields={fields} okClickHandler={addItem}>
             {context.library.data.items.map((item) => (
-                <div className='box_item-box full'>
                     <div className='box_item-box' key={item.id}>
                         <p>{item.name} ---- {item.sum}</p>
                         <img src={people} alt="people button" className='item-box_button item-box_button_people'/>
@@ -65,9 +67,8 @@ const Items = () => {
                         </ul>
                         <img src={delete_basket}  onClick={() => removeItem(item.id)} alt="delete button" className='item-box_button item-box_button_delete'/>
                     </div>
-                </div>
             ))}
-            <p>Total: 111111</p>
+            <p>Total: {total}</p>
         </Box>
     )
 }

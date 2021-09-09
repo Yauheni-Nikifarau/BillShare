@@ -1,0 +1,14 @@
+export default {
+    owner: 'Alex',
+    date: '12321312',
+    name: 'Tusa u Kiri',
+    id: 32423423,
+    data: {
+        participants: [{id: 1, name: 'Alex'}, {id: 2, name: 'Bob'}, {id: 3, name: 'Donald'}],
+        spending: [{id: 1, participantId: 1, amount: 111111}],
+        items: [{id: 1, name: 'Beer', sum: 1200, participantsId: [1,2,3]}, {id: 1, name: 'Beer', sum: 1200, participantsId: [1,3]}]
+    },
+    results: [{id: 1, fromId: 1, toId: 2, sum: 1200, approved: false}]
+}
+test JSON:
+{"owner":"","date":"","name":"","id":1,"data":{"participants":[{"id":1,"name":"Okorochok"},{"id":2,"name":"Vano"},{"id":3,"name":"Chubaka"},{"id":4,"name":"Самый Умный"},{"id":5,"name":"Настик"},{"id":6,"name":"Настя Самого умного"},{"id":7,"name":"Маша"}],"spending":[{"id":1,"participantId":1,"amount":4.15},{"id":2,"participantId":4,"amount":82.16}],"items":[{"id":1,"name":"Шейк","sum":4.16,"participantsId":[5,6]},{"id":2,"name":"Пиво пауланер","sum":5.78,"participantsId":[3]},{"id":3,"name":"Шашлычокс","sum":35.78,"participantsId":[1,2,3,4,5,6,7]},{"id":4,"name":"Колбаски","sum":9.68,"participantsId":[1,2,3,4,5,6,7]},{"id":6,"name":"Мундштуки","sum":4.15,"participantsId":[1,2,3,4,5,6,7]},{"id":7,"name":"что-то","sum":0.45,"participantsId":[1,2,3,4,5,6,7]},{"id":8,"name":"Машино пиво","sum":6.31,"participantsId":[7]},{"id":9,"name":"Коньяк","sum":20,"participantsId":[1,2,3,4,5,6,7]}]},"results":[{"id":1,"fromId":1,"toId":4,"sum":"5.85","approved":false},{"id":2,"fromId":2,"toId":4,"sum":"10.00","approved":false},{"id":3,"fromId":3,"toId":4,"sum":"15.78","approved":false},{"id":4,"fromId":5,"toId":4,"sum":"12.08","approved":false},{"id":5,"fromId":6,"toId":4,"sum":"12.08","approved":false},{"id":6,"fromId":7,"toId":4,"sum":"16.31","approved":false}]}
