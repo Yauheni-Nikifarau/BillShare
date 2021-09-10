@@ -7,7 +7,7 @@
     max-width: 1280px;
     width: 90%;
     margin: 0 auto;
-    min-width: 460px;
+    min-width: 300px;
 }
 
 .app-header {
@@ -203,20 +203,20 @@
 }
 
 .shadow-bg {
-    position: absolute;
+    position: fixed;
     display: none;
+    min-width: 100vw;
+    min-height: 100%;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    /*right: 0;*/
-    /*bottom: 0;*/
     background-color: rgba(90, 90, 90, 0.2);
     z-index: 4;
 }
 
 .box_add-modal {
-    position: absolute;
+    position: fixed;
     display: none;
     width: 300px;
     top: 50%;
@@ -302,6 +302,15 @@
     width: 100%;
 }
 
+.app-instruction p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.app-instruction p:first-child {
+    text-align: center;
+}
+
 @media screen and (max-width: 1100px){
     .app {
         width: 95%;
@@ -323,6 +332,36 @@
     .box_item-box p {
         font-size: 14px;
     }
+
+    .app-content > div > button {
+        width: 250px;
+        font-size: 20px;
+        padding: 10px 10px;
+    }
+
+    .box_item-box {
+        padding: 5px;
+        width: 90%;
+    }
+
+    .app-content {
+        width: 95%;
+    }
 }
+
+@media screen and (max-width: 400px){
+    .app {
+        width: 100%;
+    }
+
+    .app-name {
+        font-size: 48px;
+    }
+
+    .box-header {
+        padding: 10px 10px;
+    }
+}
+
 
 

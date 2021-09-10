@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {LibraryContext} from "../../context";
 
 interface Option {
     value: string|number,
@@ -20,12 +21,10 @@ interface BoxProps {
     children: any
 }
 
-interface MyState {
-    modalShouldOpen: boolean
-}
-
 const Box = (props: BoxProps) => {
     const [modalShouldOpen, setModalShouldOpen] = useState(false);
+    const context = useContext(LibraryContext);
+
     const openModal = () => {
         setModalShouldOpen(true);
     }
@@ -51,8 +50,8 @@ const Box = (props: BoxProps) => {
 
     return (
         <div className={'box ' + props.title.toLowerCase()}>
-            {props.fields ?
-                <div className={'box_add-modal' + (modalShouldOpen ? ' open' : '')}>
+            {props.fields && props.buttonShouldBe && modalShouldOpen ?
+                <div className={'box_add-modal' + (modalShouldOpen && context.allowModalState ? ' open' : '')}>
                     {props.fields.map((field, index) => (
                         field.type === 'select' ?
                             <select name={field.name} key={index}>
@@ -64,21 +63,17 @@ const Box = (props: BoxProps) => {
                             </select> :
                             <input type={field.type} name={field.name} placeholder={field.placeholder} key={index} />
                     ))}
-                    <button onClick={callHandler}>OK</button>
+                    <button onClick={(event) => {callHandler(event); context.denyModal()}}>OK</button>
                 </div>
                 : ''
             }
             <div className='box-header'>
                 <h2>{props.title}</h2>
                 {props.buttonShouldBe ?
-                    <button onClick={openModal}>+Add</button>
+                    <button onClick={() => {openModal(); context.allowModal()}}>+Add</button>
                     : ''
                 }
             </div>
-            {props.buttonShouldBe ?
-                <div className={'shadow-bg' + (modalShouldOpen ? ' open' : '')} onClick={closeModal}></div>
-                : ''
-            }
             {props.children}
         </div>
     )
