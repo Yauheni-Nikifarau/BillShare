@@ -5,26 +5,8 @@ import library from "./library.js";
 
 function App() {
     const [menuShouldOpen, setMenuShouldOpen] = useState(false);
-    const [shadowBgShouldBe, setShadowBgShouldBe] = useState(false);
-    const [anyModalShouldBe, setAnyModalShouldBe] = useState(false);
-    const showShadowBg = () => {
-        console.log('showShadowBG');
-        setShadowBgShouldBe(true);
-    }
-    const notShowShadowBg = () => {
-        console.log('NOTshowShadowBG');
-        setShadowBgShouldBe(false);
-    }
     const openMenu = () => {
         setMenuShouldOpen(!menuShouldOpen);
-    }
-    const denyAnyModal = () => {
-        console.log('denyAnyModal');
-        setAnyModalShouldBe(false);
-    }
-    const allowAnyModal = () => {
-        console.log('allowAnyModal');
-        setAnyModalShouldBe(true);
     }
     const putLibrary = () => {
         localStorage.setItem('library', JSON.stringify(library));
@@ -47,7 +29,7 @@ function App() {
             <h1 className='app-name'>BillShare</h1>
         </header>
         <main className={'app-content' + (menuShouldOpen? ' menu_open' : '')}>
-            <Calculation allowModalState={anyModalShouldBe} allowModal={() => {allowAnyModal(); showShadowBg()}} denyModal={() => {denyAnyModal(); notShowShadowBg()}}/>
+            <Calculation/>
             <div className='app-instruction'>
                 <p>It is an App helping you having a party to share your costs between participants honestly. Follow the next steps:</p>
                 <p>1. Add all party participants to Participants window</p>
@@ -57,7 +39,6 @@ function App() {
                 <p></p>
             </div>
         </main>
-        <div className={'shadow-bg' + (shadowBgShouldBe ? ' open' : '')} onClick={() => {denyAnyModal(); notShowShadowBg()}}></div>
 
     </div>
   );

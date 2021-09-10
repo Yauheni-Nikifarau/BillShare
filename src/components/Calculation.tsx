@@ -6,15 +6,10 @@ import Spending from "./Box/Spending";
 import {LibraryContext} from "../context";
 import {iLibrary} from "../interfaces";
 
-interface CalculationProps {
-    allowModal: () => void,
-    denyModal: () => void,
-    allowModalState: boolean,
-}
 
-const Calculation = (props: CalculationProps) => {
+
+const Calculation = () => {
     const [library, setLibrary] = useState(JSON.parse(localStorage.getItem('library') || ''));
-    const [allowModal, denyModal, allowModalState] = [props.allowModal, props.denyModal, props.allowModalState];
     const [shouldShowResults, setShouldShowResults] = useState(false);
     const context = useContext(LibraryContext);
     const updateLibrary = async (library: iLibrary) => {
@@ -112,7 +107,7 @@ const Calculation = (props: CalculationProps) => {
 
     return (
         <div>
-            <LibraryContext.Provider value={{updateLibrary, library, allowModal, denyModal, allowModalState}}>
+            <LibraryContext.Provider value={{updateLibrary, library}}>
                 <div>
                     <Participants/>
                     <Spending/>

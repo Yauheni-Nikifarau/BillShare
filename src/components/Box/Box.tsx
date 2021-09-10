@@ -48,10 +48,11 @@ const Box = (props: BoxProps) => {
         closeModal();
     }
 
+
     return (
         <div className={'box ' + props.title.toLowerCase()}>
-            {props.fields && props.buttonShouldBe && modalShouldOpen ?
-                <div className={'box_add-modal' + (modalShouldOpen && context.allowModalState ? ' open' : '')}>
+            {props.fields ?
+                <div className={'box_add-modal' + (modalShouldOpen ? ' open' : '')}>
                     {props.fields.map((field, index) => (
                         field.type === 'select' ?
                             <select name={field.name} key={index}>
@@ -63,17 +64,21 @@ const Box = (props: BoxProps) => {
                             </select> :
                             <input type={field.type} name={field.name} placeholder={field.placeholder} key={index} />
                     ))}
-                    <button onClick={(event) => {callHandler(event); context.denyModal()}}>OK</button>
+                    <button onClick={callHandler}>OK</button>
                 </div>
                 : ''
             }
             <div className='box-header'>
                 <h2>{props.title}</h2>
                 {props.buttonShouldBe ?
-                    <button onClick={() => {openModal(); context.allowModal()}}>+Add</button>
+                    <button onClick={openModal}>+Add</button>
                     : ''
                 }
             </div>
+            {props.buttonShouldBe ?
+                <div className={'shadow-bg' + (modalShouldOpen ? ' open' : '')} onClick={closeModal}></div>
+                : ''
+            }
             {props.children}
         </div>
     )

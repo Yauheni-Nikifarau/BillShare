@@ -3,10 +3,7 @@ import {iLibrary} from "./interfaces";
 
 interface iLibraryContext {
     library: iLibrary
-    updateLibrary: (library: iLibrary) => Promise<void>,
-    allowModal: () => void,
-    denyModal: () => void,
-    allowModalState: boolean
+    updateLibrary: (library: iLibrary) => Promise<void>
 }
 
 export const LibraryContext = React.createContext({} as iLibraryContext);
